@@ -43,6 +43,4 @@ An AI-powered web application for identifying plants from images.
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
 
-This project is open source and available for public
