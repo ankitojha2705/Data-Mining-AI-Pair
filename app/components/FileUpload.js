@@ -28,7 +28,7 @@ export default function FileUpload({ onUpload }) {
 
   return (
     <div
-      className={`border-2 border-dashed rounded-lg p-8 text-center ${
+      className={`border-2 border-dashed rounded-lg p-8 mt-20 text-center ${
         dragging ? 'border-green-500 bg-green-100' : 'border-gray-300'
       }`}
       onDragOver={handleDragOver}
