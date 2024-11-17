@@ -1,35 +1,32 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline with Self-Hosted Runner
 
-# Define triggers to run the workflow
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted  # Use the self-hosted runner instead of GitHub-hosted
     steps:
       # Step 1: Checkout Code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Log in to DockerHub
-      - name: Log in to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      # Step 3: Build Docker Image
+      # Step 2: Build Docker Image
       - name: Build Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/nextjs-app:latest .
+          docker build -t nextjs-app:latest .
 
-      # Step 4: Push Docker Image to DockerHub
+      # Step 3: Push Docker Image
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/nextjs-app:latest
+          docker tag nextjs-app:latest <your-dockerhub-username>/nextjs-app:latest
+          docker push <your-dockerhub-username>/nextjs-app:latest
+
+      # Step 4: Deploy the Application Locally
+      - name: Run Docker Container
+        run: |
+          docker stop nextjs-app || true
+          docker rm nextjs-app || true
+          docker run -d --name nextjs-app -p 3000:3000 nextjs-app:latest
