@@ -24,7 +24,7 @@ jobs:
           docker tag nextjs-app:latest ankitojha2705/nextjs-app:latest
           docker push ankitojha2705/nextjs-app:latest
 
-      # Step 4: Deploy the Application Locally
+      # Step 4: Deploy the Application Locallys
       - name: Run Docker Container
         run: |
           docker stop nextjs-app || true
