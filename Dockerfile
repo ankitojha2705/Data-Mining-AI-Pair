@@ -1,5 +1,5 @@
 # Use Node.js 18 as a parent image (compatible with Next.js)
-FROM node:18
+
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
