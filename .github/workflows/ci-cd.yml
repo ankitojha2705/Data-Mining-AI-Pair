@@ -21,8 +21,8 @@ jobs:
       # Step 3: Push Docker Image
       - name: Push Docker Image
         run: |
-          docker tag nextjs-app:latest <your-dockerhub-username>/nextjs-app:latest
-          docker push <your-dockerhub-username>/nextjs-app:latest
+          docker tag nextjs-app:latest ankitojha2705/nextjs-app:latest
+          docker push ankitojha2705/nextjs-app:latest
 
       # Step 4: Deploy the Application Locally
       - name: Run Docker Container
